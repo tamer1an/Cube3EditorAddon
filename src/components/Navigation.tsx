@@ -9,10 +9,7 @@ export const Navigation = (state: any) => {
 
   return (
     <div>
-      <Link to="/dashboard">
-        <Button color="primary" type="submit" value="login">
-          Dashboard
-        </Button>
+      <Link to="/">
       </Link>
       <hr />
     </div>
