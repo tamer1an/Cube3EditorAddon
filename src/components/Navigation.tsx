@@ -12,6 +12,7 @@ export const Navigation = (state: any) => {
       <Link to="/">
       </Link>
       <hr />
+      navigation
     </div>
   );
 };

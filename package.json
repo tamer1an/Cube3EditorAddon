@@ -2,7 +2,7 @@
   "name": "better-life",
   "version": "0.1.0",
   "description": "Better life App",
-  "homepage": "/",
+  "homepage": "./",
   "main": "src/index.tsx",
   "license": "MIT",
   "scripts": {
@@ -15,9 +15,6 @@
     "server": "ts-node -O \"{ \\\"module\\\": \\\"commonjs\\\" }\"  src/server/",
     "qk": "concurrently \"npm run start-dev\""
   },
-  "endpointRoot": {
-    "food": "/api/food/"
-  },
   "devDependencies": {
     "@babel/register": "^7.10.5",
     "@material-ui/core": "^4.9.11",
@@ -27,8 +24,6 @@
     "@types/express-fileupload": "^1.1.3",
     "@types/jest": "^25.2.1",
     "@types/lodash": "^4.14.150",
-    "@types/mongodb": "^3.5.11",
-    "@types/mongoose": "^5.7.14",
     "@types/node": "^14.0.13",
     "@types/react": "^16.9.34",
     "@types/react-dom": "^16.9.6",

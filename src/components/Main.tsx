@@ -9,7 +9,7 @@ export const Main = () => {
   return (
     <Router history={history}>
         <Navigation />
-        <Route exact path="/" component={App} />
+        <Route path="/" component={App} />
     </Router>
   );
 };

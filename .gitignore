@@ -1,3 +1,5 @@
+/desktop/.idea
+
 # Logs
 logs
 *.log
@@ -102,3 +104,11 @@ dist
 
 # TernJS port file
 .tern-port
+/.idea/.gitignore
+/.idea/codeStyles/codeStyleConfig.xml
+/.idea/Cube3EditorAddon.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/desktop/package-lock.json
+/.idea/codeStyles/Project.xml
+/.idea/vcs.xml
