@@ -2,19 +2,19 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
-function createWindow () {
+function createWindow (appPath) {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 600,
+    width: 400,
+    height: 300,
+    resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('../build/index.html')
-
+  mainWindow.loadFile(appPath)
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
@@ -23,8 +23,10 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow()
-  
+  createWindow('./src/index.html');
+  // createWindow('../dist/editor/index.html');
+  // createWindow('../build/index.html');
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
