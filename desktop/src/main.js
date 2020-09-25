@@ -1,13 +1,17 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
+
+// var remote = require('remote'); // Load remote compnent that contains the dialog dependency
+// var dialog = remote.require('dialog'); // Load the dialogs component of the OS
+const fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
 
 function createWindow (appPath) {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 400,
     height: 300,
-    resizable: false,
+    // resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
@@ -23,7 +27,31 @@ function createWindow (appPath) {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  // fs.readFile('../public/cube/3D_printer_test_mini__no_text.BFB', function (err, data) {
+  //   if (err) {
+  //     return console.error(err);
+  //   }
+  //
+  //   console.log("Asynchronous read: " + );
+  // });
+  // ipcMain.on('asynchronous-message', (event, arg) => {
+  //   console.log(arg) // prints "ping"
+  //   event.reply('asynchronous-reply', 'pong')
+  // })
+
+
+  const data = fs.readFileSync('../public/cube/3D_printer_test_mini__no_text.BFB');
+  console.log("Synchronous read: " + data.toString().slice(0,100));
+  console.log("Program Ended");
+
+
+  ipcMain.on('synchronous-message', (event, arg) => {
+    console.log(arg) // prints "ping"
+    event.returnValue = data;
+  })
+
   createWindow('./src/index.html');
+
   // createWindow('../dist/editor/index.html');
   // createWindow('../build/index.html');
 
