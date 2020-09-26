@@ -20,3 +20,5 @@
 * after build in React App and Angular App
 1) `npm i`
 2) `npm start`
+
+![BASIC UI](https://user-images.githubusercontent.com/956869/94345473-61881e80-0026-11eb-87d5-5af8fd9e49f9.JPG)
