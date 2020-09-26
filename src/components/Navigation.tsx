@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import Select from '@material-ui/core/Select';
 
-export const Navigation = (state: any) => {
+export const Navigation = (props: any) => {
   const history = useHistory();
 
   return (
@@ -12,7 +12,14 @@ export const Navigation = (state: any) => {
       <Link to="/">
       </Link>
       <hr />
-      navigation
+      <details>
+         <pre>
+           {props.stats}
+         </pre>
+        <summary>
+        Stats:
+        </summary>
+      </details>
     </div>
   );
 };
