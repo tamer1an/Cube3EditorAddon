@@ -35,6 +35,8 @@
     "cors": "^2.8.5",
     "dayjs": "^1.8.26",
     "express": "^4.17.1",
+    "highcharts": "^8.2.0",
+    "highcharts-react-official": "^3.0.0",
     "history": "^4.10.1",
     "kill-port": "^1.6.0",
     "less": "^3.11.1",

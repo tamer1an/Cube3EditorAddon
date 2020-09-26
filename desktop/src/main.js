@@ -1,20 +1,24 @@
 // Modules to control application life and create native browser window
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, ipcMain } = require('electron')
 const path = require('path')
 
-function createWindow () {
+// var remote = require('remote'); // Load remote compnent that contains the dialog dependency
+// var dialog = remote.require('dialog'); // Load the dialogs component of the OS
+const fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
+
+function createWindow (appPath) {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 1200,
-    height: 600,
+    width: 400,
+    height: 300,
+    // resizable: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js')
     }
   })
 
   // and load the index.html of the app.
-  mainWindow.loadFile('../build/index.html')
-
+  mainWindow.loadFile(appPath)
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 }
@@ -23,8 +27,33 @@ function createWindow () {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  createWindow()
-  
+  // fs.readFile('../public/cube/3D_printer_test_mini__no_text.BFB', function (err, data) {
+  //   if (err) {
+  //     return console.error(err);
+  //   }
+  //
+  //   console.log("Asynchronous read: " + );
+  // });
+  // ipcMain.on('asynchronous-message', (event, arg) => {
+  //   console.log(arg) // prints "ping"
+  //   event.reply('asynchronous-reply', 'pong')
+  // })
+
+  // TODO: hardcoded file
+  const data = fs.readFileSync('../public/cube/3D_printer_test_mini__no_text.BFB');
+  console.log("Synchronous read: " + data.toString().slice(0,100));
+  console.log("Program Ended");
+
+  ipcMain.on('synchronous-message', (event, arg) => {
+    console.log(arg) // prints "ping"
+    event.returnValue = data;
+  })
+
+  createWindow('./src/index.html');
+
+  // createWindow('../dist/editor/index.html');
+  // createWindow('../build/index.html');
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
