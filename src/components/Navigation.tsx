@@ -44,7 +44,7 @@ export const Navigation = ({ stats: { preInit, layerTime } }: any) => {
         return { ...acc, [row[0]]: row[1] };
       }, {});
 
-  // draw preInit settings
+  // Draw preInit settings
   return (
     <div>
       <Link to="/"></Link>

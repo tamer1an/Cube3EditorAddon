@@ -4,22 +4,6 @@ import { history } from '../history';
 import { App } from './App';
 import { Navigation } from './Navigation';
 
-// TODO: init state
-// @ts-ignore
-// globalThis.init = false;
-const processData = async (setInit: any) => {
-  // TODO: hardcoded link
-  const data = await fetch('http://localhost:3000/data.json');
-  const layered = await data.json();
-  const initComplete = layered.findIndex((v: Array<any>) => v[0].includes('^InitComplete'));
-  const preInit = layered.splice(0, initComplete + 1);
-  const layerTime = layered.map((v: Array<any>) => v[0].split(' '));
-
-  // @ts-ignore
-  globalThis.init = true;
-  setInit({ preInit, layerTime });
-};
-
 export const Main = () => {
   const [init, setInit] = useState({ preInit: [] });
   const onInput = (v: any) => {
@@ -55,20 +39,13 @@ export const Main = () => {
         const layerTime = layers.map((v: Array<any>) => v[0].split(' '));
 
         console.log(layerTime);
-        // @ts-ignore
+        // @ts-expect-error
         setInit({ preInit, layerTime });
       }
     };
 
     reader.readAsText(file);
   };
-
-  // useEffect(() => {
-  //   // @ts-ignore
-  //   if (!globalThis.init) {
-  //     let result = processData(setInit);
-  //   }
-  // });
 
   return (
     <Router history={history}>
