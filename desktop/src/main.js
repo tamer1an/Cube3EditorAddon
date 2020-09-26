@@ -39,11 +39,10 @@ app.whenReady().then(() => {
   //   event.reply('asynchronous-reply', 'pong')
   // })
 
-
+  // TODO: hardcoded file
   const data = fs.readFileSync('../public/cube/3D_printer_test_mini__no_text.BFB');
   console.log("Synchronous read: " + data.toString().slice(0,100));
   console.log("Program Ended");
-
 
   ipcMain.on('synchronous-message', (event, arg) => {
     console.log(arg) // prints "ping"
