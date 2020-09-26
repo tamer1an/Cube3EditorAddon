@@ -5,7 +5,7 @@
 `../../Cube3Utils/Cube3Decoder.exe ./3D_printer_test_mini__no_text.cube3`
 
 ## In root folder React App
-0) Install NodeJS v14
+0) [Install](https://nodejs.org/en/download/) NodeJS v14
 1) `npm i`
 2) `npm start`
 ----------------------------------------------------------------
