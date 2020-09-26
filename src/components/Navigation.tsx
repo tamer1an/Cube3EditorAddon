@@ -12,14 +12,16 @@ export const Navigation = ({ stats: { preInit, layerTime } }: any) => {
   const history = useHistory();
 
   const genInfoSpan = (collection: Array<any>, color = 'white') => {
-    return collection.map((v: any, key: number) => (
-      <p title={v} key={key} style={{ ...basicStyles, color }}>
-        {v}
-      </p>
-    ));
+    return collection.length <= 0 || collection.map((v: any, key: number) => {
+      return (
+        <p title={v} key={key} style={{ ...basicStyles, color }}>
+          <b>{v}</b>
+        </p>
+      )
+    });
   };
 
-  const genDetails = (slice: Array<any>, summary: string, color = 'white') => {
+  const genDetails = (slice: Array<any>, summary: string, color = 'grey') => {
     return <details>
       {genInfoSpan(slice, color)}
       <summary>{summary}</summary>
@@ -34,24 +36,27 @@ export const Navigation = ({ stats: { preInit, layerTime } }: any) => {
   const otherSlice = preInit.slice(MATERIAL_ENDS, -2);
   const restSlice = preInit.slice(-2);
 
-  let { ModelHeight, LayerCount, Sidewalks, Supports /*, Density, Pattern, , Raft, Supports*/ } =
-    otherSlice.slice(0, -1).reduce((acc: Object, [val]: [string]) => {
-    const row = val.replaceAll('^', '').split(':')
-    return { ...acc, [row[0]]: row[1] }
-  }, {});
+  let { ModelHeight, LayerCount, Sidewalks, Supports /*, Density, Pattern, Raft*/ } =
+    otherSlice
+      .slice(0, -1)
+      .reduce((acc: Object, [val]: [string]) => {
+        const row = val.replaceAll('^', '').split(':');
+        return { ...acc, [row[0]]: row[1] };
+      }, {});
 
+  // draw preInit settings
   return (
     <div>
       <Link to="/"></Link>
       <hr />
       <details open>
         <pre>
-          {genDetails(versionSlice, 'Version info', 'yellow')}
-          {genDetails(materialSlice, 'Materials info', 'pink')}
-          {genDetails(otherSlice, 'Settings properties', 'green')}
+          {genDetails(versionSlice, 'Version info')}
+          {genDetails(materialSlice, 'Materials info')}
+          {genDetails(otherSlice, 'Settings properties')}
           {genDetails(restSlice, 'Other properties')}
           <br/>
-          {/*{Object.entries({Density, Pattern, Sidewalks, Raft, Supports}).map((v)=>{*/}
+          {/*{Object.entries({Density, Pattern, Raft}).map((v)=>{*/}
           {/*  return <p>{v[0]}: {v[1]}</p>*/}
           {/*})}*/}
         </pre>

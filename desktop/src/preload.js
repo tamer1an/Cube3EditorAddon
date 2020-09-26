@@ -84,7 +84,7 @@ switch (location.href) {
     //     const item = v[0].includes('^InitComplete');
     //     return item;
     //   })
-    console.log(layered);
+    // console.log(layered);
 }
 
 
